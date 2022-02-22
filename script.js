@@ -30,7 +30,7 @@ alert(`
     `);
 
 //Impostare il tempo rimanente
-let timeLeft = 5 /*-- secondi --*/
+let timeLeft = 1 /*-- secondi --*/
 
 //Impostare il timer
 let clock = setInterval( () => {
@@ -40,9 +40,8 @@ let clock = setInterval( () => {
     //Azzerare il timer e chiedere i numeri
     if(timeLeft === 0){
         writedNumb = prompt("Inserisci i numeri visualizzati precedentemente.");
-        //console.log(answer)
-    } else{
-        numMemorized.push(writedNumb)
+        numMemorized.push(writedNumb);
+        //console.log("Hai inserito " + numMemorized);
     }
 }, 3000);
 
