@@ -10,6 +10,7 @@ console.log('prova');
 
 //Creare array in cui inserire i numeri generati
 const numArray = [];
+const numMemorized = [];
 
 //Generare 5 numeri random e inserirli nell'array
 while(numArray.length < 5){
@@ -22,4 +23,23 @@ while(numArray.length < 5){
 console.log(numArray);
 
 //Comunicare i numeri generati
-alert(`I numeri generati sono: ${numArray}`);
+alert(`
+    I numeri generati automaticamente dal software sono: ${numArray}. 
+    Memorizzali, attendi 30 secondi e reinserisci i numeri che ricordi.
+    Il software ti dirà quali e quanti numeri ti sei ricordato.
+    `);
+
+//Impostare il tempo rimanente
+let timeLeft = 5 /*-- secondi --*/
+
+//Impostare il timer
+let clock = setInterval( () => {
+    //Far scalare il tempo
+    timeLeft --
+
+    //Azzerare il timer e chiedere i numeri
+    if(timeLeft === 0){
+        const answer = prompt("Inserisci i numeri visualizzati precedentemente.");
+        //console.log(answer)
+    }
+}, 300);
