@@ -29,7 +29,6 @@ function randomN(min, max){
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random()*(max-min+1)+min);
-    console.log(randomN)
 }
 
 //Inserire i numeri nel contenitore
@@ -40,11 +39,19 @@ do{
         randomNumbers.push(numbers);
     }
 
-} while (randomNumbers.length < 5)
+} while (randomNumbers.length <= 5)
+
+//Mostrare i numeri
+alert(
+    `
+    ${randomNumbers.join(' - ')}.
+    `
+);
+
 
 //Creare timeout
 
-setTimeout(timeoutF, 500);
+setTimeout(timeoutF, 300);
 
 function timeoutF() {
 
@@ -58,20 +65,12 @@ function timeoutF() {
             guessedNumbers.push(askIt);
         }
 
-    } while (userNumbers.length <= randomNumbers.length);
-}
-
-//Mostrare i numeri
-alert(
-    `
-    ${randomNumbers.join(' - ')}.
-    `
-);
-
-//Comunicare l'esito
-alert(
-    `
-    Hai indovinato ${guessedNumbers.length} numeri su ${randomNumbers.length}.
-    Hai indovinato ${guessedNumbers.join(' - ')}.
-    `
+    } while (userNumbers.length < randomNumbers.length);
+    //Comunicare l'esito
+    alert(
+        `
+        Hai indovinato ${guessedNumbers.length} numeri su ${randomNumbers.length}.
+        Hai indovinato ${guessedNumbers.join(' - ')}.
+        `
     )
+}
