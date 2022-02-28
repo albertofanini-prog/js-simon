@@ -7,42 +7,71 @@ console.log('prova');
     //Tramite prompt()
 //Il software comunica quanti e quali numeri sono stati indovinati
 
+//Welcome
+alert(
+    `
+    Mmorizza i 5 numeri che vedrai in seguito e aspetta cinque secondi.
+    `
+)
 
-//Creare array in cui inserire i numeri generati
-const numArray = [];
-const numMemorized = [];
+//Contenitore dei numeri random da presentare
+const randomNumbers = [];
+console.log(randomNumbers);
+//Contenitore dei numeri inseriti dall'user
+const userNumbers = [];
+console.log(userNumbers);
+//Contenitore dei numeri indovinati
+const guessedNumbers = [];
+console.log(guessedNumbers);
 
-//Generare 5 numeri random e inserirli nell'array
-while(numArray.length < 5){
-    //Generare numeri random da 1 a 100
-    const number = Math.floor(Math.random() * 100) + 1;
-
-    //Inserire i numeri nell'array
-    if(numArray.indexOf(number) === -1) numArray.push(number);
+//Generare 5 numeri casuali
+function randomN(min, max){
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random()*(max-min+1)+min);
+    console.log(randomN)
 }
-console.log(numArray);
 
-//Comunicare i numeri generati
-alert(`
-    I numeri generati automaticamente dal software sono: ${numArray}. 
-    Memorizzali, attendi 30 secondi e reinserisci i numeri che ricordi.
-    Il software ti dirà quali e quanti numeri ti sei ricordato.
-    `);
+//Inserire i numeri nel contenitore
+do{
+    const numbers = randomN(1, 10);
 
-//Impostare il tempo rimanente
-let timeLeft = 1 /*-- secondi --*/
-
-//Impostare il timer
-let clock = setInterval( () => {
-    //Far scalare il tempo
-    timeLeft --
-
-    //Azzerare il timer e chiedere i numeri
-    if(timeLeft === 0){
-        writedNumb = prompt("Inserisci i numeri visualizzati precedentemente.");
-        numMemorized.push(writedNumb);
-        //console.log("Hai inserito " + numMemorized);
+    if(randomNumbers.includes(numbers)===false){
+        randomNumbers.push(numbers);
     }
-}, 3000);
 
-//console.log("Hai inserito" + writedNumb)
+} while (randomNumbers.length < 5)
+
+//Creare timeout
+
+setTimeout(timeoutF, 500);
+
+function timeoutF() {
+
+    //Chiedere i numeri ricordati e inserirli
+    do{
+        
+        const askIt = parseInt(prompt('Inserisci i numeri che hai memorizzato.'));
+        userNumbers.push(askIt);
+
+        if(randomNumbers.includes(askIt)){
+            guessedNumbers.push(askIt);
+        }
+
+    } while (userNumbers.length <= randomNumbers.length);
+}
+
+//Mostrare i numeri
+alert(
+    `
+    ${randomNumbers.join(' - ')}.
+    `
+);
+
+//Comunicare l'esito
+alert(
+    `
+    Hai indovinato ${guessedNumbers.length} numeri su ${randomNumbers.length}.
+    Hai indovinato ${guessedNumbers.join(' - ')}.
+    `
+    )
